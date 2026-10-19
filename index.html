@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zia Khan, Learning Designer</title>
+<meta name="description" content="Zia Khan, Lead Designer at Moosa Academy: Arabic motion design, interactive math lessons, learning apps and UI/UX. Try the work live.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Zia Khan: math you can watch, touch and play">
+<meta property="og:description" content="Animated explainers, interactive lessons, learning apps and web design, all live to try.">
+<meta property="og:image" content="https://ziakhan029-hub.github.io/zia-showcase/cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta property="og:url" content="https://ziakhan029-hub.github.io/zia-showcase/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #fafbfd;
+    --grid: #e3e9f4;
+    --grid-strong: #c9d4e8;
+    --ink: #1b2a4a;
+    --ink-soft: #4a5875;
+    --muted: #7d879b;
+    --blue: #2f6fde;
+    --blue-wash: #e6eefc;
+    --gap: #f2a93b;
+    --gap-wash: #fdf1dc;
+    --display: "Bricolage Grotesque", system-ui, sans-serif;
+    --body: "IBM Plex Sans", "IBM Plex Sans Arabic", system-ui, sans-serif;
+    --ar: "IBM Plex Sans Arabic", "IBM Plex Sans", sans-serif;
+    --gutter: clamp(16px, 5vw, 64px);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    font-family: var(--body); color: var(--ink); -webkit-font-smoothing: antialiased;
+    background-color: var(--paper);
+    background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 32px 32px; background-position: -1px -1px;
+    overflow-x: hidden;
+  }
+  button { font: inherit; color: inherit; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--gap); outline-offset: 3px; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 var(--gutter); }
+
+  h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.02em; line-height: 1.02; }
+  h1 { font-size: clamp(44px, 7vw, 88px); }
+  h2 { font-size: clamp(34px, 4.6vw, 56px); }
+  h3 { font-size: clamp(21px, 2vw, 25px); font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; }
+  p { font-size: clamp(17px, 1.5vw, 19px); line-height: 1.55; color: var(--ink-soft); max-width: 62ch; }
+
+  /* ---------- header ---------- */
+  header { position: sticky; top: 0; z-index: 10; background: rgba(250,251,253,.9); backdrop-filter: blur(8px); border-bottom: 1px solid var(--grid-strong); }
+  header .wrap { display: flex; align-items: center; height: 64px; gap: 28px; }
+  .logo { font: 800 22px var(--display); text-decoration: none; letter-spacing: -0.02em; display: flex; align-items: center; gap: 10px; }
+  .logo i { width: 12px; height: 12px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 4px var(--blue-wash); }
+  header nav { margin-left: auto; display: flex; gap: 24px; }
+  header nav a { text-decoration: none; font-size: 16px; color: var(--ink-soft); font-weight: 500; }
+  header nav a:hover { color: var(--blue); }
+  @media (max-width: 720px) { header nav { display: none; } }
+
+  /* ---------- hero ---------- */
+  .hero { padding: clamp(40px, 8vw, 96px) 0 clamp(48px, 8vw, 96px); }
+  .hero .wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(32px, 5vw, 64px); align-items: center; }
+  @media (max-width: 900px) { .hero .wrap { grid-template-columns: 1fr; } }
+  .hero p.lede { font-size: clamp(19px, 1.9vw, 23px); margin-top: 24px; }
+  .role { display: inline-flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 500; color: var(--blue); margin-bottom: 22px; }
+  .role::before { content: ""; width: 26px; height: 3px; background: var(--blue); border-radius: 2px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; font: 600 17px var(--body); padding: 13px 22px; border-radius: 6px; border: 1.5px solid var(--ink); background: var(--ink); color: #fff; text-decoration: none; cursor: pointer; }
+  .btn:hover { background: var(--blue); border-color: var(--blue); }
+  .btn.ghost { background: #fff; color: var(--ink); }
+  .btn.ghost:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .btn svg { width: 16px; height: 16px; flex: none; }
+
+  .playcard { background: #fff; border: 2px solid var(--ink); border-radius: 8px; padding: 18px; box-shadow: 8px 8px 0 var(--blue-wash); }
+  .playcard-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
+  .eq { font: 800 clamp(28px, 3.4vw, 40px) var(--display); color: var(--ink); min-height: 1.2em; }
+  .eq[dir="rtl"] { font-family: var(--ar); font-weight: 600; }
+  .eq .m { color: var(--blue); }
+  .eq .b { color: #b9770e; }
+  .seg { display: inline-flex; border: 1.5px solid var(--ink); border-radius: 999px; overflow: hidden; }
+  .seg button { border: 0; background: #fff; padding: 7px 14px; font-size: 15px; cursor: pointer; }
+  .seg button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+  #plot { width: 100%; height: auto; display: block; touch-action: none; border-radius: 4px; }
+  #plot .g { stroke: var(--grid); stroke-width: 1; }
+  #plot .ax { stroke: var(--ink-soft); stroke-width: 1.6; }
+  #plot .tick { font: 12px var(--body); fill: var(--muted); }
+  #plot .line { stroke: var(--blue); stroke-width: 3.5; }
+  #plot .rise { stroke: var(--gap); stroke-width: 2.5; stroke-dasharray: 6 5; }
+  #plot .handle { fill: var(--gap); stroke: var(--ink); stroke-width: 2.5; cursor: grab; }
+  #plot .halo { fill: var(--gap); opacity: .25; transform-box: fill-box; transform-origin: center; animation: halo 1.8s ease-out infinite; }
+  #plot.touched .halo { display: none; }
+  @keyframes halo { from { transform: scale(1); opacity: .35; } to { transform: scale(2.6); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { #plot .halo { animation: none; } }
+  .playcard .cap { font-size: 15px; color: var(--muted); margin-top: 10px; }
+
+  /* ---------- skills ---------- */
+  section { padding: clamp(56px, 8vw, 100px) 0; }
+  .sec-head { display: grid; gap: 14px; margin-bottom: clamp(28px, 4vw, 44px); }
+  .chapter { font-size: 17px; font-weight: 500; color: var(--blue); display: flex; gap: 10px; align-items: center; }
+  .chapter::before { content: ""; width: 26px; height: 3px; background: var(--blue); border-radius: 2px; }
+  .skills { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  @media (max-width: 1000px) { .skills { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .skills { grid-template-columns: 1fr; } }
+  .skill { background: #fff; border: 1.5px solid var(--grid-strong); border-radius: 6px; padding: 22px; display: flex; flex-direction: column; text-decoration: none; transition: border-color .2s ease, transform .2s ease; }
+  .skill:hover { border-color: var(--ink); transform: translateY(-3px); }
+  .skill .ic { width: 52px; height: 52px; border-radius: 8px; background: var(--ink); display: grid; place-items: center; margin-bottom: 18px; }
+  .skill .ic svg { width: 28px; height: 28px; color: var(--gap); }
+  .skill p { font-size: 16px; margin-top: 8px; flex: 1; }
+  .skill .tools { font-size: 14px; color: var(--muted); margin-top: 14px; }
+  .skill .go { font-size: 15px; font-weight: 600; color: var(--blue); margin-top: 14px; }
+
+  /* ---------- work: videos ---------- */
+  .work-row { display: grid; grid-template-columns: 300px 1fr; gap: clamp(28px, 4vw, 56px); align-items: start; }
+  @media (max-width: 900px) { .work-row { grid-template-columns: 1fr; } }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  .vids { display: grid; grid-template-columns: repeat(3, minmax(220px, 1fr)); gap: 18px; }
+  @media (max-width: 900px) {
+    .vids { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px; padding-bottom: 10px; margin-right: calc(-1 * var(--gutter)); padding-right: var(--gutter); }
+    .vid { flex: 0 0 min(72vw, 280px); scroll-snap-align: start; }
+  }
+  .vid .frame { aspect-ratio: 9 / 16; border: 2px solid var(--ink); border-radius: 8px; overflow: hidden; background: #0e1626; }
+  .vid iframe { width: 100%; height: 100%; border: 0; display: block; }
+  .vid span { display: block; margin-top: 8px; font-size: 14px; color: var(--muted); }
+
+  /* ---------- viewers (live lessons, websites) ---------- */
+  .viewer { display: grid; grid-template-columns: 300px 1fr; gap: clamp(24px, 3vw, 44px); align-items: start; }
+  @media (max-width: 900px) { .viewer { grid-template-columns: 1fr; } }
+  .tabs { display: flex; flex-direction: column; gap: 10px; }
+  @media (max-width: 900px) { .tabs { flex-direction: row; overflow-x: auto; padding-bottom: 6px; } .tabs .tab { flex: 0 0 auto; max-width: 240px; } }
+  .tab { text-align: left; cursor: pointer; background: #fff; border: 1.5px solid var(--grid-strong); border-radius: 6px; padding: 14px 16px; }
+  .tab b { display: block; font: 600 18px var(--display); color: var(--ink); }
+  .tab span { display: block; font-size: 14px; color: var(--ink-soft); margin-top: 3px; line-height: 1.35; }
+  .tab[aria-selected="true"] { background: var(--ink); border-color: var(--ink); }
+  .tab[aria-selected="true"] b { color: #fff; }
+  .tab[aria-selected="true"] span { color: #c9d4e8; }
+  .stage { display: flex; flex-direction: column; align-items: center; gap: 14px; min-width: 0; }
+  .device { position: relative; overflow: hidden; background: #fff; border: 10px solid var(--ink); box-sizing: content-box; }
+  .device.phone { border-radius: 30px; border-width: 11px; }
+  .device.laptop { border-radius: 10px; border-top-width: 22px; }
+  .device iframe { position: absolute; left: 0; top: 0; border: 0; transform-origin: 0 0; background: #fff; }
+  .open-link { font-size: 15px; color: var(--blue); font-weight: 600; text-decoration: none; display: inline-flex; gap: 8px; align-items: center; }
+  .open-link svg { width: 14px; height: 14px; }
+
+  /* ---------- apps ---------- */
+  .apps { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 3vw, 36px); }
+  @media (max-width: 800px) { .apps { grid-template-columns: 1fr; } }
+  .app { background: #fff; border: 1.5px solid var(--grid-strong); border-radius: 8px; padding: 20px; }
+  .app p { font-size: 16px; margin: 6px 0 16px; }
+  .app .frame { aspect-ratio: 16 / 10; border: 2px solid var(--ink); border-radius: 6px; overflow: hidden; background: #0e1626; }
+  .app iframe { width: 100%; height: 100%; border: 0; display: block; }
+  .app .tag { display: inline-block; font-size: 13px; font-weight: 600; color: var(--blue); background: var(--blue-wash); border-radius: 999px; padding: 4px 10px; margin-bottom: 10px; }
+
+  /* ---------- contact ---------- */
+  .contact { background: var(--ink); color: #fff; }
+  .contact h2 { color: #fff; max-width: 16ch; }
+  .contact p { color: #c9d4e8; margin-top: 18px; }
+  .contact .btn { background: #fff; color: var(--ink); border-color: #fff; }
+  .contact .btn:hover { background: var(--gap); border-color: var(--gap); }
+  .contact .btn.ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.5); }
+  .contact .btn.ghost:hover { background: #fff; color: var(--ink); }
+  footer { background: var(--ink); color: #8fa0c2; font-size: 14px; padding: 0 0 32px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top"><i></i>Zia Khan</a>
+    <nav aria-label="Sections">
+      <a href="#motion">Motion</a>
+      <a href="#lessons">Lessons</a>
+      <a href="#apps">Apps</a>
+      <a href="#web">Web</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- hero: a live manipulative is the first thing visitors touch -->
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <div class="role">Lead Designer at Moosa Academy</div>
+        <h1>I make math you can watch, touch and play.</h1>
+        <p class="lede">Arabic-first animated explainers, interactive lessons and learning apps. Designing since 2016.</p>
+        <div class="cta">
+          <a class="btn" href="#motion">See my work</a>
+          <a class="btn ghost" href="#contact">Get in touch</a>
+        </div>
+      </div>
+      <div class="playcard">
+        <div class="playcard-top">
+          <div class="eq" id="eq"></div>
+          <div class="seg" role="group" aria-label="Language">
+            <button data-lang="en" aria-pressed="true">EN</button>
+            <button data-lang="ar" aria-pressed="false">ع</button>
+          </div>
+        </div>
+        <svg id="plot" viewBox="0 0 600 400" aria-label="Interactive graph: drag the orange point to change the slope"></svg>
+        <p class="cap" id="cap">Drag the orange point. This is the kind of lesson I build.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- skills -->
+  <section id="skills" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head"><div class="chapter">What I do</div><h2>Four skills, one goal: lessons students remember</h2></div>
+      <div class="skills">
+        <a class="skill" href="#motion"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></svg></span><h3>Motion design</h3><p>Short animated explainers in Arabic and English.</p><span class="tools">After Effects</span><span class="go">Watch</span></a>
+        <a class="skill" href="#lessons"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 20h18M3 20V4"/><path d="M5 17l5-6 4 3 6-8"/></svg></span><h3>Interactive lessons</h3><p>Books, labs and quizzes that run in the browser.</p><span class="tools">HTML, CSS, JavaScript</span><span class="go">Try them</span></a>
+        <a class="skill" href="#apps"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></span><h3>Learning apps</h3><p>An AI math tutor and an adaptive exam-prep app.</p><span class="tools">AI-assisted development</span><span class="go">See demos</span></a>
+        <a class="skill" href="#web"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 9v11"/></svg></span><h3>UI/UX design</h3><p>Websites and product screens, Arabic-first.</p><span class="tools">Since 2016</span><span class="go">Browse</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- motion -->
+  <section id="motion">
+    <div class="wrap work-row">
+      <div class="sec-head" style="margin:0">
+        <div class="chapter">Motion design</div>
+        <h2>Animated explainers</h2>
+        <p>Math lessons with motion design, published for students on TikTok in Arabic and English.</p>
+        <div class="links">
+          <a class="btn ghost" href="https://www.tiktok.com/@moosa_tv" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/></svg>@moosa_tv</a>
+          <a class="btn ghost" href="https://www.tiktok.com/@moosa_tv_english" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/></svg>@moosa_tv_english</a>
+        </div>
+      </div>
+      <div class="vids">
+        <div class="vid"><div class="frame"><iframe data-src="https://www.tiktok.com/player/v1/7685693781592558868?music_info=0&amp;description=0&amp;rel=0" title="Animated explainer 1 (Arabic)" allow="fullscreen; encrypted-media"></iframe></div><span>Arabic</span></div>
+        <div class="vid"><div class="frame"><iframe data-src="https://www.tiktok.com/player/v1/7695701179350699265?music_info=0&amp;description=0&amp;rel=0" title="Animated explainer 2 (English)" allow="fullscreen; encrypted-media"></iframe></div><span>English</span></div>
+        <div class="vid"><div class="frame"><iframe data-src="https://www.tiktok.com/player/v1/7603012419903950101?music_info=0&amp;description=0&amp;rel=0" title="Animated explainer 3 (Arabic)" allow="fullscreen; encrypted-media"></iframe></div><span>Arabic</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- interactive lessons -->
+  <section id="lessons">
+    <div class="wrap">
+      <div class="sec-head"><div class="chapter">Interactive lessons</div><h2>Live lessons. Go ahead and play.</h2></div>
+      <div class="viewer" data-viewer='[
+        {"t":"Grade 1 math book","s":"Arabic, game-style, for phones and tablets","url":"https://ziakhan029-hub.github.io/grade-1-book/","w":450,"h":800,"kind":"phone"},
+        {"t":"Math concepts explorer","s":"Geometry and calculus in English and Arabic, with quizzes","url":"https://ziakhan029-hub.github.io/math-concepts-explorer/","w":1440,"h":900,"kind":"laptop"},
+        {"t":"Calculus in real life","s":"10 animated Arabic labs","url":"https://ziakhan029-hub.github.io/integration-animations/","w":1440,"h":900,"kind":"laptop"}
+      ]'></div>
+    </div>
+  </section>
+
+  <!-- apps -->
+  <section id="apps">
+    <div class="wrap">
+      <div class="sec-head"><div class="chapter">Learning apps</div><h2>Two apps I've built</h2></div>
+      <div class="apps">
+        <div class="app">
+          <span class="tag">AI tutor</span>
+          <h3>Salem</h3>
+          <p>An Arabic-first AI math tutor that teaches step by step, with diagrams, simple explanations and Socratic questions.</p>
+          <div class="frame"><iframe data-src="https://drive.google.com/file/d/1wzxYL6ugQarF4oBrNECssNy1P_agN0Ur/preview" title="Salem app demo" allow="autoplay; fullscreen"></iframe></div>
+        </div>
+        <div class="app">
+          <span class="tag">Exam prep</span>
+          <h3>Qudorat</h3>
+          <p>Adaptive prep for the Saudi Qudorat (GAT) exam. It finds each student's weak skills and drills them with exam-style questions.</p>
+          <div class="frame"><iframe data-src="https://drive.google.com/file/d/1714HLoMXtG2Hnr6a2C9Acnnl1jmMrdak/preview" title="Qudorat app demo" allow="autoplay; fullscreen"></iframe></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- web design -->
+  <section id="web">
+    <div class="wrap">
+      <div class="sec-head"><div class="chapter">UI/UX design</div><h2>Website concepts for Moosa Academy</h2></div>
+      <div class="viewer" data-viewer='[
+        {"t":"Homepage","s":"Dark, search-first Arabic homepage","url":"https://ziakhan029-hub.github.io/ziakhan/","w":1440,"h":900,"kind":"laptop"},
+        {"t":"Lesson page","s":"A lesson page with progress and course navigation","url":"https://ziakhan029-hub.github.io/lessons/","w":1440,"h":900,"kind":"laptop"}
+      ]'></div>
+    </div>
+  </section>
+</main>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Let's build lessons students remember.</h2>
+    <p>Message me here on LinkedIn, or see more of my work below.</p>
+    <div class="cta">
+      <a class="btn" href="https://www.tiktok.com/@moosa_tv" target="_blank" rel="noopener">TikTok (Arabic)</a>
+      <a class="btn ghost" href="https://www.tiktok.com/@moosa_tv_english" target="_blank" rel="noopener">TikTok (English)</a>
+    </div>
+  </div>
+</section>
+<footer><div class="wrap">Zia Khan. Built by hand with HTML, CSS and JavaScript.</div></footer>
+
+<script>
+(() => {
+  /* ---------- load embeds only when they scroll near the screen ---------- */
+  const lazy = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting && !e.target.src) { e.target.src = e.target.dataset.src; lazy.unobserve(e.target); }
+  }), { rootMargin: '300px' });
+  document.querySelectorAll('iframe[data-src]').forEach(f => lazy.observe(f));
+
+  /* ---------- hero manipulative: y = mx + b ---------- */
+  const plot = document.getElementById('plot');
+  const W = 600, H = 400, U = 30, OX = W / 2, OY = H / 2;
+  const NS = 'http://www.w3.org/2000/svg';
+  const mk = (tag, a) => { const el = document.createElementNS(NS, tag); for (const k in a) el.setAttribute(k, a[k]); plot.appendChild(el); return el; };
+  for (let x = OX % U; x <= W; x += U) mk('line', { class: 'g', x1: x, y1: 0, x2: x, y2: H });
+  for (let y = OY % U; y <= H; y += U) mk('line', { class: 'g', x1: 0, y1: y, x2: W, y2: y });
+  mk('line', { class: 'ax', x1: 0, y1: OY, x2: W, y2: OY });
+  mk('line', { class: 'ax', x1: OX, y1: 0, x2: OX, y2: H });
+  for (let k = -8; k <= 8; k += 4) if (k) mk('text', { class: 'tick', x: OX + k * U, y: OY + 18, 'text-anchor': 'middle' }).textContent = k;
+  for (let k = -4; k <= 4; k += 4) if (k) mk('text', { class: 'tick', x: OX - 8, y: OY - k * U + 4, 'text-anchor': 'end' }).textContent = k;
+  const line = mk('line', { class: 'line' });
+  const run = mk('line', { class: 'rise' }), rise = mk('line', { class: 'rise' });
+  const yInt = mk('circle', { r: 6, fill: '#d18a19' });
+  const halo = mk('circle', { class: 'halo', r: 12 });
+  const handle = mk('circle', { class: 'handle', r: 12, tabindex: 0, role: 'slider', 'aria-label': 'Slope', 'aria-valuemin': -3, 'aria-valuemax': 3 });
+
+  let m = 1, b = 1, lang = 'en';
+  const RUN = 3;   // the handle sits at x = 3
+  const sx = x => OX + x * U, sy = y => OY - y * U;
+  const fmt = (v, ar) => { const s = (Math.round(v * 100) / 100).toString(); return ar ? s.replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]).replace('.', '٫') : s; };
+  function draw() {
+    const ar = lang === 'ar';
+    line.setAttribute('x1', 0); line.setAttribute('y1', sy(m * -OX / U + b));
+    line.setAttribute('x2', W); line.setAttribute('y2', sy(m * OX / U + b));
+    yInt.setAttribute('cx', OX); yInt.setAttribute('cy', sy(b));
+    run.setAttribute('x1', sx(0)); run.setAttribute('y1', sy(b)); run.setAttribute('x2', sx(RUN)); run.setAttribute('y2', sy(b));
+    rise.setAttribute('x1', sx(RUN)); rise.setAttribute('y1', sy(b)); rise.setAttribute('x2', sx(RUN)); rise.setAttribute('y2', sy(b + RUN * m));
+    for (const c of [handle, halo]) { c.setAttribute('cx', sx(RUN)); c.setAttribute('cy', sy(b + RUN * m)); }
+    handle.setAttribute('aria-valuenow', m);
+    const eq = document.getElementById('eq');
+    eq.dir = ar ? 'rtl' : 'ltr';
+    eq.innerHTML = ar
+      ? `ص = <span class="m">${fmt(m, 1)}</span>س + <span class="b">${fmt(b, 1)}</span>`
+      : `y = <span class="m">${fmt(m)}</span>x + <span class="b">${fmt(b)}</span>`;
+  }
+  const toY = ev => { const p = new DOMPoint(ev.clientX, ev.clientY).matrixTransform(plot.getScreenCTM().inverse()); return (OY - p.y) / U; };
+  let dragging = false;
+  handle.addEventListener('pointerdown', e => { dragging = true; plot.classList.add('touched'); handle.setPointerCapture(e.pointerId); });
+  handle.addEventListener('pointermove', e => { if (!dragging) return; m = Math.max(-3, Math.min(3, Math.round(((toY(e) - b) / RUN) * 4) / 4)); draw(); });
+  handle.addEventListener('pointerup', () => dragging = false);
+  handle.addEventListener('keydown', e => {
+    if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return;
+    e.preventDefault(); plot.classList.add('touched');
+    m = Math.max(-3, Math.min(3, m + (e.key === 'ArrowUp' ? .25 : -.25))); draw();
+  });
+  const caps = { en: 'Drag the orange point. This is the kind of lesson I build.', ar: 'اسحب النقطة البرتقالية. هذا نوع الدروس التي أصممها.' };
+  document.querySelectorAll('.seg button').forEach(btn => btn.onclick = () => {
+    lang = btn.dataset.lang;
+    document.querySelectorAll('.seg button').forEach(x => x.setAttribute('aria-pressed', x === btn));
+    const cap = document.getElementById('cap');
+    cap.textContent = caps[lang]; cap.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    draw();
+  });
+  draw();
+
+  /* ---------- live viewers: real pages at real size inside a device frame ---------- */
+  const extIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/></svg>';
+  document.querySelectorAll('[data-viewer]').forEach(root => {
+    const items = JSON.parse(root.dataset.viewer);
+    root.innerHTML = `<div class="tabs" role="tablist">${items.map((it, i) =>
+      `<button class="tab" role="tab" aria-selected="${i === 0}" data-i="${i}"><b>${it.t}</b><span>${it.s}</span></button>`).join('')}</div>
+      <div class="stage"><div class="device"><iframe title="Live preview"></iframe></div>
+      <a class="open-link" target="_blank" rel="noopener">${extIcon}Open full screen</a></div>`;
+    const stage = root.querySelector('.stage'), device = root.querySelector('.device');
+    const frame = root.querySelector('iframe'), open = root.querySelector('.open-link');
+    let cur = 0, seen = false;
+    function layout() {
+      const it = items[cur];
+      const border = it.kind === 'phone' ? 22 : 20;
+      const maxW = stage.clientWidth - border, maxH = Math.min(560, innerHeight * .72);
+      const s = Math.min(maxW / it.w, maxH / it.h);
+      device.className = 'device ' + it.kind;
+      device.style.width = it.w * s + 'px'; device.style.height = it.h * s + 'px';
+      frame.style.width = it.w + 'px'; frame.style.height = it.h + 'px';
+      frame.style.transform = `scale(${s})`;
+    }
+    function select(i) {
+      cur = i;
+      root.querySelectorAll('.tab').forEach(t => t.setAttribute('aria-selected', +t.dataset.i === i));
+      open.href = items[i].url;
+      layout();
+      if (seen) frame.src = items[i].url;
+    }
+    root.querySelectorAll('.tab').forEach(t => t.onclick = () => select(+t.dataset.i));
+    new ResizeObserver(layout).observe(stage);
+    new IntersectionObserver((es, io) => { if (es[0].isIntersecting) { seen = true; frame.src = items[cur].url; io.disconnect(); } }, { rootMargin: '300px' }).observe(root);
+    select(0);
+  });
+})();
+</script>
+</body>
+</html>
