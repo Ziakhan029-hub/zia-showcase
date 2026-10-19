@@ -164,6 +164,13 @@
   .contact .btn:hover { background: var(--gap); border-color: var(--gap); }
   .contact .btn.ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.5); }
   .contact .btn.ghost:hover { background: #fff; color: var(--ink); }
+  .reach { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-top: 30px; max-width: 900px; }
+  .reach-card { display: flex; align-items: center; gap: 16px; padding: 18px 20px; border-radius: 8px; background: #fff; color: var(--ink); text-decoration: none; border: 2px solid #fff; transition: border-color .2s ease, transform .2s ease; }
+  .reach-card:hover { border-color: var(--gap); transform: translateY(-3px); }
+  .reach-card .ic { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; flex: none; background: var(--blue-wash); color: var(--blue); }
+  .reach-card .ic svg { width: 26px; height: 26px; }
+  .reach-card b { display: block; font: 600 20px var(--display); }
+  .reach-card b + span { display: block; font-size: 15px; color: var(--ink-soft); margin-top: 2px; word-break: break-all; }
   footer { background: var(--ink); color: #8fa0c2; font-size: 14px; padding: 0 0 32px; }
 </style>
 </head>
@@ -289,9 +296,19 @@
 <section class="contact" id="contact">
   <div class="wrap">
     <h2>Let's build lessons students remember.</h2>
-    <p>Message me here on LinkedIn, or see more of my work below.</p>
-    <div class="cta">
-      <a class="btn" href="https://www.tiktok.com/@moosa_tv" target="_blank" rel="noopener">TikTok (Arabic)</a>
+    <p>Tap to message me directly.</p>
+    <div class="reach">
+      <a class="reach-card" href="https://wa.me/966535128636" target="_blank" rel="noopener">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.7 11.8 11.8 0 004.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 001.8-1.3 2.2 2.2 0 00.1-1.3c0-.1-.2-.2-.4-.3z"/></svg></span>
+        <span><b>WhatsApp</b><span dir="ltr">+966 53 512 8636</span></span>
+      </a>
+      <a class="reach-card" href="mailto:ziak6666@gmail.com">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
+        <span><b>Email</b><span>ziak6666@gmail.com</span></span>
+      </a>
+    </div>
+    <div class="cta" style="margin-top:26px">
+      <a class="btn ghost" href="https://www.tiktok.com/@moosa_tv" target="_blank" rel="noopener">TikTok (Arabic)</a>
       <a class="btn ghost" href="https://www.tiktok.com/@moosa_tv_english" target="_blank" rel="noopener">TikTok (English)</a>
     </div>
   </div>
