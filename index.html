@@ -140,11 +140,26 @@
   .work-row { display: grid; grid-template-columns: 300px 1fr; gap: clamp(28px, 4vw, 56px); align-items: start; }
   @media (max-width: 900px) { .work-row { grid-template-columns: 1fr; } }
   .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
-  .vids { display: grid; grid-template-columns: repeat(3, minmax(220px, 1fr)); gap: 18px; }
-  @media (max-width: 900px) {
-    .vids { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px; padding-bottom: 10px; margin-inline-end: calc(-1 * var(--gutter)); padding-inline-end: var(--gutter); }
-    .vid { flex: 0 0 min(72vw, 280px); scroll-snap-align: start; }
-  }
+  .motion-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+  .motion-head .links { margin-top: 0; }
+  .car-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin: 32px 0 16px; }
+  .vfilters { display: flex; gap: 8px; flex-wrap: wrap; }
+  .vchip { font-size: 15px; font-weight: 500; padding: 8px 16px; border-radius: 999px; border: 1.5px solid var(--ink); background: #fff; cursor: pointer; }
+  .vchip em { font-style: normal; color: var(--muted); margin-inline-start: 4px; }
+  .vchip[aria-pressed="true"] { background: var(--ink); color: #fff; }
+  .vchip[aria-pressed="true"] em { color: #c9d4e8; }
+  .car-arrows { display: flex; gap: 8px; }
+  .car-btn { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--ink); background: #fff; display: grid; place-items: center; cursor: pointer; }
+  .car-btn:hover:not(:disabled) { background: var(--ink); color: #fff; }
+  .car-btn:disabled { opacity: .3; cursor: default; }
+  .car-btn svg { width: 20px; height: 20px; }
+  html[dir="rtl"] .car-btn svg { transform: scaleX(-1); }
+  @media (max-width: 600px) { .car-arrows { display: none; } }
+  .vids { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding-bottom: 12px; scrollbar-width: thin; }
+  .vid { flex: 0 0 calc((100% - 3 * 18px) / 4); scroll-snap-align: start; }
+  .vid[hidden] { display: none; }
+  @media (max-width: 1000px) { .vid { flex-basis: calc((100% - 2 * 18px) / 3); } }
+  @media (max-width: 700px) { .vids { margin-inline-end: calc(-1 * var(--gutter)); padding-inline-end: var(--gutter); } .vid { flex-basis: min(70vw, 280px); } }
   .vid .frame { aspect-ratio: 9 / 16; border: 2px solid var(--ink); border-radius: 8px; overflow: hidden; background: #0e1626; }
   .vid iframe { width: 100%; height: 100%; border: 0; display: block; }
   .vid span { display: block; margin-top: 8px; font-size: 14px; color: var(--muted); }
@@ -253,20 +268,41 @@
 
   <!-- motion -->
   <section id="motion">
-    <div class="wrap work-row">
-      <div class="sec-head" style="margin:0">
-        <div class="chapter" data-i18n="sk1_t">Motion design</div>
-        <h2 data-i18n="motion_h">Animated explainers</h2>
-        <p data-i18n="motion_p">Math lessons with motion design, published for students on TikTok in Arabic and English.</p>
+    <div class="wrap">
+      <div class="motion-head">
+        <div class="sec-head" style="margin:0">
+          <div class="chapter" data-i18n="sk1_t">Motion design</div>
+          <h2 data-i18n="motion_h">Animated explainers</h2>
+          <p data-i18n="motion_p">Math lessons with motion design, published for students on TikTok in Arabic and English.</p>
+        </div>
         <div class="links">
           <a class="btn ghost" href="https://www.tiktok.com/@moosa_tv" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/></svg>@moosa_tv</a>
           <a class="btn ghost" href="https://www.tiktok.com/@moosa_tv_english" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/></svg>@moosa_tv_english</a>
         </div>
       </div>
-      <div class="vids">
-        <div class="vid"><div class="frame"><iframe data-src="https://www.tiktok.com/player/v1/7685693781592558868?music_info=0&amp;description=0&amp;rel=0" title="Animated explainer 1 (Arabic)" allow="fullscreen; encrypted-media"></iframe></div><span data-i18n="arabic">Arabic</span></div>
-        <div class="vid"><div class="frame"><iframe data-src="https://www.tiktok.com/player/v1/7695701179350699265?music_info=0&amp;description=0&amp;rel=0" title="Animated explainer 2 (English)" allow="fullscreen; encrypted-media"></iframe></div><span data-i18n="english">English</span></div>
-        <div class="vid"><div class="frame"><iframe data-src="https://www.tiktok.com/player/v1/7603012419903950101?music_info=0&amp;description=0&amp;rel=0" title="Animated explainer 3 (Arabic)" allow="fullscreen; encrypted-media"></iframe></div><span data-i18n="arabic">Arabic</span></div>
+      <div class="car-bar">
+        <div class="vfilters" role="group" aria-label="Filter videos">
+          <button class="vchip" data-f="all" aria-pressed="true"><span data-i18n="all">All</span> <em>11</em></button>
+          <button class="vchip" data-f="ar" aria-pressed="false"><span data-i18n="arabic">Arabic</span> <em>7</em></button>
+          <button class="vchip" data-f="en" aria-pressed="false"><span data-i18n="english">English</span> <em>4</em></button>
+        </div>
+        <div class="car-arrows">
+          <button class="car-btn" data-dir="-1" aria-label="Previous videos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button class="car-btn" data-dir="1" aria-label="Next videos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+      <div class="vids" id="vids">
+          <div class="vid" data-lang="ar"><div class="frame"><iframe data-vsrc="https://www.tiktok.com/player/v1/7685693781592558868?music_info=0&amp;description=0&amp;rel=0" title="Animated explainer 1 (Arabic)" allow="fullscreen; encrypted-media"></iframe></div><span data-i18n="arabic">Arabic</span></div>
+          <div class="vid" data-lang="en"><div class="frame"><iframe data-vsrc="https://www.tiktok.com/player/v1/7695701179350699265?music_info=0&amp;description=0&amp;rel=0" title="Animated explainer 2 (English)" allow="fullscreen; encrypted-media"></iframe></div><span data-i18n="english">English</span></div>
+          <div class="vid" data-lang="ar"><div class="frame"><iframe data-vsrc="https://www.tiktok.com/player/v1/7603012419903950101?music_info=0&amp;description=0&amp;rel=0" title="Animated explainer 3 (Arabic)" allow="fullscreen; encrypted-media"></iframe></div><span data-i18n="arabic">Arabic</span></div>
+          <div class="vid" data-lang="ar"><div class="frame"><iframe data-vsrc="https://www.tiktok.com/player/v1/7624553404358151445?music_info=0&amp;description=0&amp;rel=0" title="Animated explainer 4 (Arabic)" allow="fullscreen; encrypted-media"></iframe></div><span data-i18n="arabic">Arabic</span></div>
+          <div class="vid" data-lang="en"><div class="frame"><iframe data-vsrc="https://www.tiktok.com/player/v1/7692753943771811078?music_info=0&amp;description=0&amp;rel=0" title="Animated explainer 5 (English)" allow="fullscreen; encrypted-media"></iframe></div><span data-i18n="english">English</span></div>
+          <div class="vid" data-lang="ar"><div class="frame"><iframe data-vsrc="https://www.tiktok.com/player/v1/7615746597946805525?music_info=0&amp;description=0&amp;rel=0" title="Animated explainer 6 (Arabic)" allow="fullscreen; encrypted-media"></iframe></div><span data-i18n="arabic">Arabic</span></div>
+          <div class="vid" data-lang="en"><div class="frame"><iframe data-vsrc="https://www.tiktok.com/player/v1/7691628724428492084?music_info=0&amp;description=0&amp;rel=0" title="Animated explainer 7 (English)" allow="fullscreen; encrypted-media"></iframe></div><span data-i18n="english">English</span></div>
+          <div class="vid" data-lang="ar"><div class="frame"><iframe data-vsrc="https://www.tiktok.com/player/v1/7598174324079742229?music_info=0&amp;description=0&amp;rel=0" title="Animated explainer 8 (Arabic)" allow="fullscreen; encrypted-media"></iframe></div><span data-i18n="arabic">Arabic</span></div>
+          <div class="vid" data-lang="en"><div class="frame"><iframe data-vsrc="https://www.tiktok.com/player/v1/7688249788545944852?music_info=0&amp;description=0&amp;rel=0" title="Animated explainer 9 (English)" allow="fullscreen; encrypted-media"></iframe></div><span data-i18n="english">English</span></div>
+          <div class="vid" data-lang="ar"><div class="frame"><iframe data-vsrc="https://www.tiktok.com/player/v1/7583689241587158293?music_info=0&amp;description=0&amp;rel=0" title="Animated explainer 10 (Arabic)" allow="fullscreen; encrypted-media"></iframe></div><span data-i18n="arabic">Arabic</span></div>
+          <div class="vid" data-lang="ar"><div class="frame"><iframe data-vsrc="https://www.tiktok.com/player/v1/7506519191701179656?music_info=0&amp;description=0&amp;rel=0" title="Animated explainer 11 (Arabic)" allow="fullscreen; encrypted-media"></iframe></div><span data-i18n="arabic">Arabic</span></div>
       </div>
     </div>
   </section>
@@ -359,7 +395,7 @@
     sk3_t: 'تطبيقات تعليمية', sk3_p: 'معلّم رياضيات بالذكاء الاصطناعي، وتطبيق تكيّفي للتحضير للاختبارات.', sk3_tools: 'تطوير بمساعدة الذكاء الاصطناعي', see_demos: 'شاهد العروض',
     sk4_t: 'تصميم الواجهات وتجربة المستخدم', sk4_p: 'مواقع وشاشات منتجات، بالعربية أولاً.', since: 'منذ 2016', browse: 'تصفّح',
     motion_h: 'شروحات متحركة', motion_p: 'دروس رياضيات بتصميم متحرك، منشورة للطلاب على تيك توك بالعربية والإنجليزية.',
-    arabic: 'عربي', english: 'إنجليزي',
+    arabic: 'عربي', english: 'إنجليزي', all: 'الكل',
     lessons_h: 'دروس حيّة. جرّبها بنفسك.', open_full: 'افتح بملء الشاشة',
     apps_h: 'تطبيقان من تطويري', ai_tutor: 'معلّم ذكي', salem: 'سالم',
     salem_p: 'معلّم رياضيات بالذكاء الاصطناعي، بالعربية أولاً، يشرح خطوة بخطوة بالرسوم والشرح المبسّط والأسئلة السقراطية.',
@@ -397,6 +433,40 @@
     if (e.isIntersecting && !e.target.src) { e.target.src = e.target.dataset.src; lazy.unobserve(e.target); }
   }), { rootMargin: '300px' });
   document.querySelectorAll('iframe[data-src]').forEach(f => lazy.observe(f));
+
+  /* ---------- video carousel: filter, arrows, load each video as it scrolls into view ---------- */
+  const track = document.getElementById('vids');
+  const vids = [...track.querySelectorAll('.vid')];
+  const arrows = document.querySelectorAll('.car-btn');
+  const step = () => track.querySelector('.vid:not([hidden])').offsetWidth + 18;
+  function arrowState() {
+    const max = track.scrollWidth - track.clientWidth, x = Math.abs(track.scrollLeft);
+    arrows[0].disabled = x < 4;
+    arrows[1].disabled = x > max - 4;
+  }
+  arrows.forEach(b => b.onclick = () => {
+    const sign = document.documentElement.dir === 'rtl' ? -1 : 1;   // RTL tracks scroll the other way
+    track.scrollBy({ left: +b.dataset.dir * sign * step() * 2 });
+  });
+  track.addEventListener('scroll', arrowState, { passive: true });
+  document.querySelectorAll('.vchip').forEach(c => c.onclick = () => {
+    document.querySelectorAll('.vchip').forEach(x => x.setAttribute('aria-pressed', x === c));
+    vids.forEach(v => { v.hidden = c.dataset.f !== 'all' && v.dataset.lang !== c.dataset.f; });
+    track.scrollTo({ left: 0 });
+    requestAnimationFrame(arrowState);
+  });
+  new IntersectionObserver((es, io) => {
+    if (!es[0].isIntersecting) return;
+    io.disconnect();
+    const inner = new IntersectionObserver(entries => entries.forEach(e => {
+      const f = e.target.querySelector('iframe');
+      if (e.isIntersecting && !f.src) { f.src = f.dataset.vsrc; inner.unobserve(e.target); }
+    }), { root: track, rootMargin: '0px 60%' });
+    vids.forEach(v => inner.observe(v));
+  }, { rootMargin: '300px' }).observe(track);
+  listeners.push(() => { track.scrollTo({ left: 0, behavior: 'instant' }); requestAnimationFrame(arrowState); });
+  addEventListener('resize', arrowState);
+  arrowState();
 
   /* ---------- hero manipulative: y = mx + b ---------- */
   const plot = document.getElementById('plot');
