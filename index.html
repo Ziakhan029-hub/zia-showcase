@@ -102,22 +102,24 @@
   #plot .g { stroke: var(--grid); stroke-width: 1; }
   #plot .ax { stroke: var(--ink-soft); stroke-width: 1.6; }
   #plot .tick { font: 12px var(--body); fill: var(--muted); direction: ltr; unicode-bidi: bidi-override; }
-  #plot .line { stroke: var(--blue); stroke-width: 3.5; }
-  #plot .rise { stroke: var(--gap); stroke-width: 2.5; stroke-dasharray: 6 5; }
+  #plot .wave { fill: none; stroke: var(--blue); stroke-width: 3.5; stroke-linejoin: round; }
+  #plot .ref { fill: none; stroke: var(--muted); stroke-width: 1.6; stroke-dasharray: 5 5; opacity: .55; }
+  #plot .mid { stroke: var(--gap); stroke-width: 2; stroke-dasharray: 7 5; }
+  #plot .amp { stroke: var(--blue); stroke-width: 2; stroke-dasharray: 3 4; opacity: .7; }
   #plot .handle { fill: var(--gap); stroke: var(--ink); stroke-width: 2.5; cursor: grab; }
   #plot .halo { fill: var(--gap); opacity: .25; transform-box: fill-box; transform-origin: center; animation: halo 1.8s ease-out infinite; }
   #plot.touched .halo { display: none; }
   @keyframes halo { from { transform: scale(1); opacity: .35; } to { transform: scale(2.6); opacity: 0; } }
   @media (prefers-reduced-motion: reduce) { #plot .halo { animation: none; } }
-  .sliders { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 22px; margin-top: 14px; }
-  @media (max-width: 480px) { .sliders { grid-template-columns: 1fr; } }
-  .sl label { display: flex; justify-content: space-between; align-items: baseline; font-size: 15px; color: var(--ink); margin-bottom: 4px; font-weight: 500; }
+  .sliders { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px 18px; margin-top: 14px; }
+  @media (max-width: 560px) { .sliders { grid-template-columns: 1fr; } }
+  .sl label { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 14px; color: var(--ink); margin-bottom: 4px; font-weight: 500; }
   .sl label b { font: 800 18px "Bricolage Grotesque", sans-serif; direction: ltr; unicode-bidi: bidi-override; }
   html[lang="ar"] .sl label b { font-family: var(--ar); font-weight: 700; }
-  .sl.m b { color: var(--blue); }
-  .sl.b b { color: #b9770e; }
-  .sl input { width: 100%; height: 26px; accent-color: var(--blue); cursor: pointer; }
-  .sl.b input { accent-color: #d18a19; }
+  .sl input { width: 100%; height: 26px; cursor: pointer; }
+  .sl.a b, .eq .a { color: var(--blue); }   .sl.a input { accent-color: var(--blue); }
+  .sl.k b, .eq .k { color: #7a4fd6; }       .sl.k input { accent-color: #7a4fd6; }
+  .sl.d b, .eq .d { color: #b9770e; }       .sl.d input { accent-color: #d18a19; }
   .playcard .cap { font-size: 15px; color: var(--muted); margin-top: 12px; }
 
   /* ---------- skills ---------- */
@@ -243,12 +245,13 @@
       </div>
       <div class="playcard">
         <div class="eq" id="eq"></div>
-        <svg id="plot" viewBox="0 0 600 400" dir="ltr" aria-label="Interactive graph of a straight line"></svg>
+        <svg id="plot" viewBox="0 0 600 400" dir="ltr" aria-label="Interactive sine wave: change its height, width and position"></svg>
         <div class="sliders" dir="ltr">
-          <div class="sl m"><label for="m-in"><span data-i18n="slope">Slope (m)</span><b id="m-val"></b></label><input id="m-in" type="range" min="-3" max="3" step="0.25" value="1"></div>
-          <div class="sl b"><label for="b-in"><span data-i18n="intercept">Intercept (b)</span><b id="b-val"></b></label><input id="b-in" type="range" min="-5" max="5" step="0.5" value="1"></div>
+          <div class="sl a"><label for="a-in"><span data-i18n="sl_a">Stretch (a)</span><b id="a-val"></b></label><input id="a-in" type="range" min="0.5" max="2.5" step="0.25" value="1.5"></div>
+          <div class="sl k"><label for="k-in"><span data-i18n="sl_k">Squeeze (b)</span><b id="k-val"></b></label><input id="k-in" type="range" min="0.5" max="3" step="0.25" value="1"></div>
+          <div class="sl d"><label for="d-in"><span data-i18n="sl_d">Shift (d)</span><b id="d-val"></b></label><input id="d-in" type="range" min="-1.5" max="1.5" step="0.25" value="0"></div>
         </div>
-        <p class="cap" data-i18n="cap">Drag the orange point or move the sliders. This is the kind of lesson I build.</p>
+        <p class="cap" data-i18n="cap">Drag the orange peak or move the sliders. This is the kind of lesson I build.</p>
       </div>
     </div>
   </div>
@@ -387,8 +390,8 @@
     h1: 'أصنع دروس رياضيات تشاهدها، وتلمسها، وتلعب بها.',
     lede: 'شروحات متحركة، ودروس تفاعلية، وتطبيقات تعليمية، بالعربية أولاً. أصمّم منذ 2016.',
     see_work: 'شاهد أعمالي', get_in_touch: 'تواصل معي',
-    slope: 'الميل (م)', intercept: 'المقطع الصادي (ب)',
-    cap: 'اسحب النقطة البرتقالية أو حرّك المؤشرات. هذا نوع الدروس التي أصمّمها.',
+    sl_a: 'تمدد رأسي (أ)', sl_k: 'انضغاط أفقي (ب)', sl_d: 'إزاحة (د)',
+    cap: 'اسحب القمة البرتقالية أو حرّك المؤشرات. هذا نوع الدروس التي أصمّمها.',
     what_i_do: 'ماذا أقدّم', skills_h: 'أربع مهارات، وهدف واحد: دروس لا تُنسى',
     sk1_t: 'تصميم الموشن جرافيك', sk1_p: 'شروحات متحركة قصيرة بالعربية والإنجليزية.', watch: 'شاهد',
     sk2_t: 'دروس تفاعلية', sk2_p: 'كتب ومختبرات واختبارات تعمل في المتصفح.', try_them: 'جرّبها',
@@ -468,62 +471,63 @@
   addEventListener('resize', arrowState);
   arrowState();
 
-  /* ---------- hero manipulative: y = mx + b ---------- */
+  /* ---------- hero manipulative: y = a·sin(bx) + d ---------- */
   const plot = document.getElementById('plot');
-  const W = 600, H = 400, U = 30, OX = W / 2, OY = H / 2;
+  const W = 600, H = 400, OX = W / 2, OY = H / 2;
+  const UX = W / (4 * Math.PI), UY = 50;   // x runs from −2π to 2π, y from −4 to 4
   const NS = 'http://www.w3.org/2000/svg';
   const mk = (tag, a) => { const el = document.createElementNS(NS, tag); for (const k in a) el.setAttribute(k, a[k]); plot.appendChild(el); return el; };
-  const digits = (v, ar) => { const s = (Math.round(v * 100) / 100).toString().replace('-', '−'); return ar ? '\u200E' + s.replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]).replace('.', '٫') : s; };   // LRM keeps the minus in front
-  for (let x = OX % U; x <= W; x += U) mk('line', { class: 'g', x1: x, y1: 0, x2: x, y2: H });
-  for (let y = OY % U; y <= H; y += U) mk('line', { class: 'g', x1: 0, y1: y, x2: W, y2: y });
+  const digits = (v, ar) => { const s = (Math.round(v * 100) / 100).toString().replace('-', '−'); return ar ? s.replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]).replace('.', '٫') : s; };
+  const sx = x => OX + x * UX, sy = y => OY - y * UY;
+  for (let k = -4; k <= 4; k++) mk('line', { class: 'g', x1: sx(k * Math.PI / 2), y1: 0, x2: sx(k * Math.PI / 2), y2: H });
+  for (let k = -4; k <= 4; k++) mk('line', { class: 'g', x1: 0, y1: sy(k), x2: W, y2: sy(k) });
   mk('line', { class: 'ax', x1: 0, y1: OY, x2: W, y2: OY });
   mk('line', { class: 'ax', x1: OX, y1: 0, x2: OX, y2: H });
   const ticks = [];
-  for (let k = -8; k <= 8; k += 4) if (k) ticks.push([mk('text', { class: 'tick', x: OX + k * U, y: OY + 18, 'text-anchor': 'middle' }), k]);
-  for (let k = -4; k <= 4; k += 4) if (k) ticks.push([mk('text', { class: 'tick', x: OX - 8, y: OY - k * U + 4, 'text-anchor': 'end' }), k]);
-  const line = mk('line', { class: 'line' });
-  const run = mk('line', { class: 'rise' }), rise = mk('line', { class: 'rise' });
-  const yInt = mk('circle', { r: 6, fill: '#d18a19' });
+  for (const k of [-2, -1, 1, 2]) ticks.push([mk('text', { class: 'tick', x: sx(k * Math.PI) - Math.sign(k) * (Math.abs(k) === 2 ? 4 : 0), y: OY + 18, 'text-anchor': k === -2 ? 'start' : k === 2 ? 'end' : 'middle' }), k, 'pi']);   // keep the ±2π labels inside the frame
+  for (const k of [-3, -2, -1, 1, 2, 3]) ticks.push([mk('text', { class: 'tick', x: OX - 8, y: sy(k) + 4, 'text-anchor': 'end' }), k, '']);
+  const wavePath = n => { let d = ''; for (let i = 0; i <= 300; i++) { const x = -2 * Math.PI + i * 4 * Math.PI / 300; d += (i ? 'L' : 'M') + sx(x).toFixed(1) + ' ' + sy(n(x)).toFixed(1); } return d; };
+  mk('path', { class: 'ref', d: wavePath(Math.sin) });
+  const mid = mk('line', { class: 'mid', x1: 0, x2: W });
+  const amp = mk('line', { class: 'amp' });
+  const wave = mk('path', { class: 'wave' });
   const halo = mk('circle', { class: 'halo', r: 12 });
-  const handle = mk('circle', { class: 'handle', r: 12, tabindex: 0, role: 'slider', 'aria-label': 'Slope', 'aria-valuemin': -3, 'aria-valuemax': 3 });
-  const mIn = document.getElementById('m-in'), bIn = document.getElementById('b-in');
+  const handle = mk('circle', { class: 'handle', r: 12, tabindex: 0, role: 'slider', 'aria-label': 'Wave height' });
+  const aIn = document.getElementById('a-in'), kIn = document.getElementById('k-in'), dIn = document.getElementById('d-in');
 
-  const RUN = 3;   // the handle sits at x = 3
-  const sx = x => OX + x * U, sy = y => OY - y * U;
   function draw() {
-    const m = +mIn.value, b = +bIn.value, ar = lang === 'ar';
-    line.setAttribute('x1', 0); line.setAttribute('y1', sy(m * -OX / U + b));
-    line.setAttribute('x2', W); line.setAttribute('y2', sy(m * OX / U + b));
-    yInt.setAttribute('cx', OX); yInt.setAttribute('cy', sy(b));
-    run.setAttribute('x1', sx(0)); run.setAttribute('y1', sy(b)); run.setAttribute('x2', sx(RUN)); run.setAttribute('y2', sy(b));
-    rise.setAttribute('x1', sx(RUN)); rise.setAttribute('y1', sy(b)); rise.setAttribute('x2', sx(RUN)); rise.setAttribute('y2', sy(b + RUN * m));
-    for (const c of [handle, halo]) { c.setAttribute('cx', sx(RUN)); c.setAttribute('cy', sy(b + RUN * m)); }
-    handle.setAttribute('aria-valuenow', m);
-    ticks.forEach(([el, k]) => { el.textContent = digits(k, ar); });
-    const sign = b < 0 ? '−' : '+', ab = Math.abs(b);
+    const a = +aIn.value, k = +kIn.value, d = +dIn.value, ar = lang === 'ar';
+    wave.setAttribute('d', wavePath(x => a * Math.sin(k * x) + d));
+    mid.setAttribute('y1', sy(d)); mid.setAttribute('y2', sy(d));
+    const px = Math.PI / (2 * k);   // first peak
+    amp.setAttribute('x1', sx(px)); amp.setAttribute('x2', sx(px)); amp.setAttribute('y1', sy(d)); amp.setAttribute('y2', sy(a + d));
+    for (const c of [handle, halo]) { c.setAttribute('cx', sx(px)); c.setAttribute('cy', sy(a + d)); }
+    handle.setAttribute('aria-valuenow', a);
+    ticks.forEach(([el, v, unit]) => {
+      el.textContent = unit ? (v < 0 ? '−' : '') + (Math.abs(v) === 1 ? '' : digits(Math.abs(v), ar)) + 'π' : digits(v, ar);
+    });
+    const sign = d < 0 ? '−' : '+', ad = Math.abs(d);
     const eq = document.getElementById('eq');
     eq.dir = ar ? 'rtl' : 'ltr';
     eq.innerHTML = ar
-      ? `ص = <span class="m">${digits(m, 1)}</span> س ${sign} <span class="b">${digits(ab, 1)}</span>`
-      : `y = <span class="m">${digits(m)}</span>x ${sign} <span class="b">${digits(ab)}</span>`;
-    document.getElementById('m-val').textContent = digits(m, ar);
-    document.getElementById('b-val').textContent = digits(b, ar);
+      ? `ص = <span class="a">${digits(a, 1)}</span> جا(<span class="k">${digits(k, 1)}</span>س) ${sign} <span class="d">${digits(ad, 1)}</span>`
+      : `y = <span class="a">${digits(a)}</span> sin(<span class="k">${digits(k)}</span>x) ${sign} <span class="d">${digits(ad)}</span>`;
+    document.getElementById('a-val').textContent = digits(a, ar);
+    document.getElementById('k-val').textContent = digits(k, ar);
+    document.getElementById('d-val').textContent = digits(d, ar);
   }
   const touched = () => plot.classList.add('touched');
-  mIn.oninput = () => { touched(); draw(); };
-  bIn.oninput = () => { touched(); draw(); };
-  const toY = ev => { const p = new DOMPoint(ev.clientX, ev.clientY).matrixTransform(plot.getScreenCTM().inverse()); return (OY - p.y) / U; };
+  [aIn, kIn, dIn].forEach(i => i.oninput = () => { touched(); draw(); });
+  const toY = ev => { const p = new DOMPoint(ev.clientX, ev.clientY).matrixTransform(plot.getScreenCTM().inverse()); return (OY - p.y) / UY; };
+  const setA = v => { aIn.value = Math.max(.5, Math.min(2.5, Math.round(v * 4) / 4)); draw(); };
   let dragging = false;
   handle.addEventListener('pointerdown', e => { dragging = true; touched(); handle.setPointerCapture(e.pointerId); });
-  handle.addEventListener('pointermove', e => {
-    if (!dragging) return;
-    mIn.value = Math.max(-3, Math.min(3, Math.round(((toY(e) - +bIn.value) / RUN) * 4) / 4)); draw();
-  });
+  handle.addEventListener('pointermove', e => { if (dragging) setA(toY(e) - +dIn.value); });
   handle.addEventListener('pointerup', () => dragging = false);
   handle.addEventListener('keydown', e => {
     if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return;
     e.preventDefault(); touched();
-    mIn.value = Math.max(-3, Math.min(3, +mIn.value + (e.key === 'ArrowUp' ? .25 : -.25))); draw();
+    setA(+aIn.value + (e.key === 'ArrowUp' ? .25 : -.25));
   });
   listeners.push(draw);
 
