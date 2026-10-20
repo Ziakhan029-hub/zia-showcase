@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Portfolio Stats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --paper: #fafbfd; --grid: #e3e9f4; --grid-strong: #c9d4e8; --ink: #1b2a4a; --ink-soft: #4a5875; --muted: #7d879b; --blue: #2f6fde; --blue-wash: #e6eefc; --gap: #f2a93b; --gap-wash: #fdf1dc; --good: #2a8a5b; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "IBM Plex Sans", system-ui, sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; min-height: 100vh;
+    background-color: var(--paper);
+    background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 40px 16px 60px; }
+  h1 { font: 800 clamp(32px, 6vw, 48px) "Bricolage Grotesque", sans-serif; letter-spacing: -0.02em; }
+  .sub { color: var(--ink-soft); margin-top: 6px; font-size: 16px; }
+  .ranges { display: flex; gap: 8px; flex-wrap: wrap; margin: 26px 0 18px; }
+  .ranges button { font: 500 15px inherit; font-family: inherit; padding: 8px 16px; border-radius: 999px; border: 1.5px solid var(--ink); background: #fff; color: var(--ink); cursor: pointer; }
+  .ranges button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+  .big { background: var(--ink); color: #fff; border-radius: 10px; padding: 26px 28px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .big .n { font: 800 clamp(56px, 12vw, 96px)/1 "Bricolage Grotesque", sans-serif; letter-spacing: -0.03em; }
+  .big .l { color: #c9d4e8; font-size: 17px; margin-top: 6px; }
+  .big .dot { width: 14px; height: 14px; border-radius: 50%; background: var(--gap); box-shadow: 0 0 0 6px rgba(242,169,59,.25); }
+  h2 { font-size: 15px; font-weight: 600; color: var(--blue); margin: 30px 0 12px; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  @media (max-width: 640px) { .cards { grid-template-columns: 1fr; } }
+  .card { background: #fff; border: 1.5px solid var(--grid-strong); border-radius: 8px; padding: 20px; display: flex; align-items: center; gap: 16px; }
+  .card .ic { width: 48px; height: 48px; border-radius: 50%; background: var(--blue-wash); color: var(--blue); display: grid; place-items: center; flex: none; }
+  .card .ic svg { width: 24px; height: 24px; }
+  .card .n { font: 800 36px/1 "Bricolage Grotesque", sans-serif; }
+  .card .l { font-size: 14px; color: var(--ink-soft); margin-top: 4px; }
+  .card.hot { border-color: var(--good); background: #eef8f2; }
+  .note { margin-top: 30px; font-size: 14px; color: var(--muted); line-height: 1.6; }
+  .note a { color: var(--blue); font-weight: 600; }
+  .err { margin-top: 18px; padding: 14px 16px; border-radius: 8px; background: var(--gap-wash); border: 1.5px solid var(--gap); font-size: 15px; display: none; }
+  .err.show { display: block; }
+  button:focus-visible, a:focus-visible { outline: 3px solid var(--gap); outline-offset: 3px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Portfolio stats</h1>
+  <p class="sub">Who opened your portfolio, and who tried to contact you.</p>
+
+  <div class="ranges" role="group" aria-label="Time range">
+    <button data-days="1" aria-pressed="false">Today</button>
+    <button data-days="7" aria-pressed="true">Last 7 days</button>
+    <button data-days="30" aria-pressed="false">Last 30 days</button>
+    <button data-days="0" aria-pressed="false">All time</button>
+  </div>
+
+  <div class="big">
+    <div><div class="n" id="visits">…</div><div class="l">people opened your portfolio</div></div>
+    <span class="dot" aria-hidden="true"></span>
+  </div>
+
+  <h2>Tried to contact you</h2>
+  <div class="cards">
+    <div class="card" data-path="contact-whatsapp"><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2z"/></svg></span><div><div class="n">…</div><div class="l">clicked WhatsApp</div></div></div>
+    <div class="card" data-path="contact-email"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><div><div class="n">…</div><div class="l">clicked Email</div></div></div>
+    <div class="card" data-path="contact-linkedin"><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9.75h4v11H3zm7 0h3.8v1.5h.06a4.2 4.2 0 013.78-2.07c4.04 0 4.79 2.66 4.79 6.12v5.45h-4v-4.83c0-1.15-.02-2.63-1.6-2.63-1.61 0-1.85 1.25-1.85 2.55v4.91h-4z"/></svg></span><div><div class="n">…</div><div class="l">clicked LinkedIn</div></div></div>
+  </div>
+
+  <p class="err" id="err">Stats can't load yet. In GoatCounter, open <b>Settings</b>, tick <b>"Allow adding visitor counts on your website"</b>, and save.</p>
+
+  <p class="note">Your own visits aren't counted on browsers where you turned tracking off.<br>
+  To see where visitors came from (LinkedIn, CV, QR code) and their countries, open the <a href="https://ziakhan.goatcounter.com" target="_blank" rel="noopener">full dashboard</a>.</p>
+</div>
+
+<script>
+(() => {
+  const BASE = 'https://ziakhan.goatcounter.com/counter/';
+  const iso = d => d.toISOString().slice(0, 10);
+
+  async function count(path, days) {
+    let q = '';
+    if (days) { const s = new Date(); s.setDate(s.getDate() - (days - 1)); q = `?start=${iso(s)}`; }
+    const r = await fetch(BASE + encodeURIComponent(path) + '.json' + q);
+    if (r.status === 404) return 0;            // no hits recorded for this yet
+    if (r.status === 403) throw new Error('setting');
+    if (!r.ok) throw new Error('http');
+    const j = await r.json();
+    return parseInt(String(j.count).replace(/\D/g, ''), 10) || 0;
+  }
+
+  async function load(days) {
+    const err = document.getElementById('err');
+    try {
+      document.getElementById('visits').textContent = await count('/zia-showcase/', days);
+      for (const card of document.querySelectorAll('.card')) {
+        const n = await count(card.dataset.path, days);
+        card.querySelector('.n').textContent = n;
+        card.classList.toggle('hot', n > 0);
+      }
+      err.classList.remove('show');
+    } catch (e) {
+      err.classList.add('show');
+      document.querySelectorAll('.n').forEach(n => { n.textContent = '–'; });
+    }
+  }
+
+  document.querySelectorAll('.ranges button').forEach(b => b.onclick = () => {
+    document.querySelectorAll('.ranges button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    load(+b.dataset.days);
+  });
+  load(7);
+})();
+</script>
+</body>
+</html>
