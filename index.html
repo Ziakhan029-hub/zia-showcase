@@ -167,17 +167,20 @@
   .vid span { display: block; margin-top: 8px; font-size: 14px; color: var(--muted); }
 
   /* ---------- viewer comments: Arabic original first, translation under it ---------- */
-  .cmts { columns: 3 300px; column-gap: 16px; }
-  .cmt { break-inside: avoid; margin: 0 0 16px; background: #fff; border: 1.5px solid var(--grid-strong); border-radius: 8px; padding: 20px 22px; }
-  .cmt blockquote { font: 400 21px/1.75 var(--ar); color: var(--ink); text-align: right; }
+  .cmts { display: flex; align-items: flex-start; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; margin-top: 28px; padding: 0 8px 14px 0; scrollbar-width: thin; }
+  @media (max-width: 700px) { .cmts { margin-inline-end: calc(-1 * var(--gutter)); padding-inline-end: var(--gutter); } }
+  .cmt { flex: 0 0 calc((100% - 2 * 16px) / 3); scroll-snap-align: start; display: flex; flex-direction: column; background: #fff; border: 1.5px solid var(--grid-strong); border-radius: 8px; padding: 20px 22px; }
+  .cmt blockquote { font: 400 20px/1.75 var(--ar); color: var(--ink); text-align: right; }
   .cmt.big { border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--blue-wash); }
   html[dir="rtl"] .cmt.big { box-shadow: -6px 6px 0 var(--blue-wash); }
-  .cmt.big blockquote { font-size: 25px; font-weight: 700; }
+  .cmt.big blockquote { font-size: 22px; font-weight: 700; }
   .cmt .tr { font-size: 15px; line-height: 1.5; color: var(--ink-soft); margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--grid-strong); }
   html[lang="ar"] .cmt .tr { display: none; }
-  .cmt figcaption { display: flex; align-items: center; gap: 10px; margin-top: 14px; font-size: 15px; }
+  .cmt figcaption { display: flex; align-items: center; gap: 10px; margin-top: auto; padding-top: 14px; font-size: 15px; }
   .cmt figcaption i { width: 30px; height: 30px; border-radius: 50%; background: var(--ink); color: var(--gap); display: grid; place-items: center; font: 700 14px var(--body); font-style: normal; flex: none; }
   .cmt figcaption b { font-weight: 600; }
+  @media (max-width: 1000px) { .cmt { flex-basis: calc((100% - 16px) / 2); } }
+  @media (max-width: 640px) { .cmt { flex-basis: 85%; } }
 
   /* ---------- viewers (live lessons, websites) ---------- */
   .viewer { display: grid; grid-template-columns: 300px 1fr; gap: clamp(24px, 3vw, 44px); align-items: start; }
@@ -326,8 +329,14 @@
   <!-- viewer comments -->
   <section id="voices" style="padding-top:0">
     <div class="wrap">
-      <div class="sec-head"><div class="chapter" data-i18n="voices_c">From the comments</div><h2 data-i18n="voices_h">Students say it finally makes sense.</h2><p data-i18n="voices_p">Real comments on my Arabic TikTok explainers, with my English translations.</p></div>
-      <div class="cmts">
+      <div class="motion-head">
+        <div class="sec-head" style="margin:0"><div class="chapter" data-i18n="voices_c">From the comments</div><h2 data-i18n="voices_h">Students say it finally makes sense.</h2><p data-i18n="voices_p">Real comments on Moosa Academy's Arabic TikTok channel, with English translations.</p></div>
+        <div class="car-arrows cmt-arrows">
+          <button class="car-btn" data-dir="-1" aria-label="Previous comments"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button class="car-btn" data-dir="1" aria-label="Next comments"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+      <div class="cmts" id="cmts">
         <figure class="cmt big"><blockquote lang="ar" dir="rtl">ما شاء الله، شرحك افضل من شرح دكاترة الجامعه اللي درسوني مادتين سيركت ١&amp;٢. اختصرت لنا مادة كامله</blockquote><p class="tr">Your explanation is better than the university professors who taught me Circuits 1 &amp; 2. You summed up a whole course for us.</p><figcaption><i>م</i><b>محمد الملحم</b></figcaption></figure>
         <figure class="cmt"><blockquote lang="ar" dir="rtl">استمرر محتوى ولا اروع</blockquote><p class="tr">Keep going. Content doesn't get better than this.</p><figcaption><i>S</i><b>Saad</b></figcaption></figure>
         <figure class="cmt big"><blockquote lang="ar" dir="rtl">شرحك جميل اسلوبك جميل طريقه تفكيرك أجمل. تعليمك للناس بمحتوى مبسّط مرئي رائع جدا. لدرجه اني بالجامعة واجهت صعوبات وأنت سهلتها علي بفيديوهاتك. الله يوفقك ويعطيك فوق ماتتمنى.</blockquote><p class="tr">Your explanation is beautiful, your style is beautiful, and the way you think is even better. Teaching with simple, visual content is amazing. I struggled at university and your videos made it easy for me.</p><figcaption><i>Z</i><b>zrdanaa</b></figcaption></figure>
@@ -434,7 +443,7 @@
     motion_h: 'شروحات متحركة', motion_p: 'دروس رياضيات بتصميم متحرك، منشورة للطلاب على تيك توك بالعربية والإنجليزية.',
     arabic: 'عربي', english: 'إنجليزي', all: 'الكل',
     voices_c: 'من التعليقات', voices_h: 'يقول الطلاب إن الفكرة أصبحت واضحة أخيراً.',
-    voices_p: 'تعليقات حقيقية على شروحاتي العربية في تيك توك.', viewer: 'مشاهد على تيك توك',
+    voices_p: 'تعليقات حقيقية على قناة أكاديمية موسى في تيك توك.', viewer: 'مشاهد على تيك توك',
     lessons_h: 'دروس حيّة. جرّبها بنفسك.', open_full: 'افتح بملء الشاشة',
     apps_h: 'تطبيقان من تطويري', ai_tutor: 'معلّم ذكي', salem: 'سالم',
     salem_p: 'معلّم رياضيات بالذكاء الاصطناعي، بالعربية أولاً، يشرح خطوة بخطوة بالرسوم والشرح المبسّط والأسئلة السقراطية.',
@@ -476,7 +485,7 @@
   /* ---------- video carousel: filter, arrows, load each video as it scrolls into view ---------- */
   const track = document.getElementById('vids');
   const vids = [...track.querySelectorAll('.vid')];
-  const arrows = document.querySelectorAll('.car-btn');
+  const arrows = document.querySelectorAll('#motion .car-btn');
   const step = () => track.querySelector('.vid:not([hidden])').offsetWidth + 18;
   function arrowState() {
     const max = track.scrollWidth - track.clientWidth, x = Math.abs(track.scrollLeft);
@@ -506,6 +515,23 @@
   listeners.push(() => { track.scrollTo({ left: 0, behavior: 'instant' }); requestAnimationFrame(arrowState); });
   addEventListener('resize', arrowState);
   arrowState();
+
+  /* ---------- comments slider: arrows move one card at a time ---------- */
+  const cTrack = document.getElementById('cmts');
+  const cArrows = document.querySelectorAll('.cmt-arrows .car-btn');
+  function cArrowState() {
+    const max = cTrack.scrollWidth - cTrack.clientWidth, x = Math.abs(cTrack.scrollLeft);
+    cArrows[0].disabled = x < 4;
+    cArrows[1].disabled = x > max - 4;
+  }
+  cArrows.forEach(b => b.onclick = () => {
+    const sign = document.documentElement.dir === 'rtl' ? -1 : 1;
+    cTrack.scrollBy({ left: +b.dataset.dir * sign * (cTrack.querySelector('.cmt').offsetWidth + 16) });
+  });
+  cTrack.addEventListener('scroll', cArrowState, { passive: true });
+  listeners.push(() => { cTrack.scrollTo({ left: 0, behavior: 'instant' }); requestAnimationFrame(cArrowState); });
+  addEventListener('resize', cArrowState);
+  cArrowState();
 
   /* ---------- hero manipulative: y = a·sin(bx) + d ---------- */
   const plot = document.getElementById('plot');
